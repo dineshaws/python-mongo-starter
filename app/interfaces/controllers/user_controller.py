@@ -1,13 +1,14 @@
 from app.interfaces.controllers.base_controller import BaseController
-from app.infrastructure.repositories.user_repository import UserRepository
+
+from app.use_cases.users.create_user_use_case import CreateUserUseCase
+from app.use_cases.users.get_user_use_case import GetUserUseCase
 
 class UserController(BaseController):
     def __init__(self) -> None:
         super().__init__()
-        self.UserRepository = UserRepository()
 
     def create(self, data):
-        return self.UserRepository.create_user(data)
+        return CreateUserUseCase().execute(data)
 
     def get(self, user_id):
-        return self.UserRepository.find_user(user_id)
+        return GetUserUseCase().execute(user_id)

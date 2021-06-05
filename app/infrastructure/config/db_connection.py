@@ -10,11 +10,9 @@ class Database():
         Database.DATABASE = client['devPureSpectrum']
 
     @staticmethod
-    def insert_one(collection, data):
-        print('insert_one ', data)
-        obj_data = data.dict()
+    def insert_one(collection, obj_data):
         return Database.DATABASE[collection].insert_one(obj_data)
 
     @staticmethod
-    def find_one(collection, query):
-        return Database.DATABASE[collection].find_one(query, {'_id': 0})
+    def find_one(collection, query, params):
+        return Database.DATABASE[collection].find_one(query, params)

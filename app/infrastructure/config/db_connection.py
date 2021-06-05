@@ -1,13 +1,17 @@
 import pymongo
 
+from app.infrastructure.config.config_factory import ConfigFactory
+
+config = ConfigFactory().create()
+
 class Database():
-    URI = 'mongodb://localhost:27017'
+    URI = config.DB_URI
     DATABASE = None
 
     @staticmethod
     def initialize():
         client = pymongo.MongoClient(Database.URI)
-        Database.DATABASE = client['devPureSpectrum']
+        Database.DATABASE = client[config.DB_NAME]
 
     @staticmethod
     def insert_one(collection, obj_data):

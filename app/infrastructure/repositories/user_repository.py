@@ -4,7 +4,7 @@ from app.entities.user import User
 
 class UserRepository(BaseRepository):
     def __init__(self) -> None:
-        super().__init__(collection='user')
+        super().__init__(collection='users')
 
     def find_user(self, user_id):
         query = {'id': user_id}
